@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Share Button with Social Media Options</title>
+</head>
+<body>
+  <h1>Share This Content</h1>
+  <p>Share this awesome content with your friends:</p>
+
+  <!-- Single Share Button -->
+  <button onclick="openShareDialog()">Share</button>
+
+  <script>
+    // Function to open the share dialog
+    function openShareDialog() {
+      // Define the content to share (you can customize this)
+      var shareContent = {
+        title: 'Check out this awesome content!',
+        url: window.location.href
+      };
+
+      // Open a modal or dialog for sharing
+      var shareDialog = document.createElement('div');
+      shareDialog.innerHTML = `
+        <h2>Select a Social Media Platform to Share:</h2>
+        <button onclick="shareFacebook('${shareContent.title}', '${shareContent.url}')">Facebook</button>
+        <button onclick="shareTwitter('${shareContent.title}', '${shareContent.url}')">Twitter</button>
+        <button onclick="shareLinkedIn('${shareContent.title}', '${shareContent.url}')">LinkedIn</button>
+      `;
+
+      // Style the share dialog (you can customize the styles)
+      shareDialog.style.position = 'fixed';
+      shareDialog.style.top = '50%';
+      shareDialog.style.left = '50%';
+      shareDialog.style.transform = 'translate(-50%, -50%)';
+      shareDialog.style.backgroundColor = '#fff';
+      shareDialog.style.padding = '20px';
+      shareDialog.style.border = '1px solid #ccc';
+      shareDialog.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
+      shareDialog.style.zIndex = '9999';
+
+      document.body.appendChild(shareDialog);
+    }
+
+    // Function to share on Facebook
+    function shareFacebook(title, url) {
+      var shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&t=${encodeURIComponent(title)}`;
+      window.open(shareUrl, '_blank');
+    }
+
+    // Function to share on Twitter
+    function shareTwitter(title, url) {
+      var shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+      window.open(shareUrl, '_blank');
+    }
+
+    // Function to share on LinkedIn
+    function shareLinkedIn(title, url) {
+      var shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+      window.open(shareUrl, '_blank');
+    }
+  </script>
+</body>
+</html>
